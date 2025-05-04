@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include "LinkFile.html" %}
+</head>
+<body>
+  {% include "Emp/HR/frmHRHearder.html"%}
+  
+  <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    {% for e in MYCourse %}
+    {% if forloop.first %}
+    <h2 class="mb-3">Employees Of {{e.Course}}</h2>
+    {% endif %}  
+    {% endfor %}
+  </div>
+
+  <div class="container-xxl py-2">
+      <div class="container">
+          <div class="row g-4"> 
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                  <form action="" method="post">
+                      {% csrf_token %}
+                      <table class="table">
+                        <thead>
+                          <tr>                    
+                            <th>Sr.NO.</th>
+                            <th>Employee Name</th> 
+                            <th>Mobile No</th> 
+                            <th>Designation</th> 
+                            <th>Course</th> 
+                            <th>Update</th>
+                          </tr>
+                        </thead>
+                        <tbody>                          
+                          {% for e in MYCourse %}
+                            <tr>                                                                    
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ e.name }}</td>
+                                <td>{{ e.ContactNo }}</td>
+                                <td>{{ e.Designation }}</td>
+                                <td>{{ e.Course }}</td>
+                                <td><a href="{% url 'UpdateEmpInfo' e.ContactNo %}">Update Data</a></td>
+                            </tr>
+                            {% empty %}
+                            <p>No matching records found.</p>
+                          {% endfor %}
+                        </tbody>
+                      </table>                      
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+
+  {% include 'Footer.html' %} 
+  {% include 'JS.html' %}
+
+    
+</body>
+</html>

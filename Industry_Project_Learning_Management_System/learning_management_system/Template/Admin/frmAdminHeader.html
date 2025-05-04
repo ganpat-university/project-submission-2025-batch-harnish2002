@@ -1,0 +1,77 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <!-- <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>E-विद्यालय</h2> -->
+        <img class="img-fluid" src="/Media/Boot/img/Logo_New.png" height="230px" width="300px" alt="">
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="/AdminHome/" class="nav-item nav-link active">Home</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Course</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="/AdmiCourse/" class="dropdown-item">Course List</a>
+                    <a href="/Adminaddcourse/" class="dropdown-item">Add Course</a>
+                    <a href="/uploadmaterial/" class="dropdown-item">Upload Material</a>
+                    <a href="/Queries_Responses/" class="dropdown-item">Queries & Responses</a>
+                    <!-- {% for e in MYCourse %}
+                    {% if forloop.first %}
+                    <a href="/QueryList/{{ e.Course }}" class="dropdown-item">Show Queries</a>
+                    {% endif %}  
+                    {% endfor %} -->
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">User</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="/UserList/" class="dropdown-item">User List</a>
+                    <!-- <a href="/Adminaddcourse/" class="dropdown-item">Add Course</a>
+                    <a href="/AdminaddEmp/" class="dropdown-item">Add Employee</a> -->
+                    <!-- <a href="/uploadmaterial/" class="dropdown-item">Upload Material</a>
+                    {% for e in MYCourse %}
+                    {% if forloop.first %}
+                    <a href="/QueryList/{{ e.Course }}" class="dropdown-item">Show Queries</a>
+                    {% endif %}  
+                    {% endfor %} -->
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Employee</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="/EmpList/" class="dropdown-item">Employee List</a>
+                    <a href="/AdminaddEmp/" class="dropdown-item">Add Employee</a>
+                    <!-- <a href="/Adminaddcourse/" class="dropdown-item">Add Course</a> -->
+                    <!-- <a href="/uploadmaterial/" class="dropdown-item">Upload Material</a>
+                    {% for e in MYCourse %}
+                    {% if forloop.first %}
+                    <a href="/QueryList/{{ e.Course }}" class="dropdown-item">Show Queries</a>
+                    {% endif %}  
+                    {% endfor %} -->
+                </div>
+            </div>
+            
+        </div>
+        <a href="/Adminlogin/" class="btn btn-info py-4 px-lg-5 d-none d-lg-block">Logout<i class="fas fa-user-cog ms-1"></i></a>       
+    </div>
+</nav>
+
+<br>
+
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h6 class="section-title bg-white text-center text-primary px-3">Admin Dashboard</h6>
+    <h3 class="mb-4">Welcome!
+
+        {% for e in MYUser %}
+        {% if forloop.first %}
+         
+        {{e.username}}
+
+        {% endif %}  
+        {% endfor %}
+      </h3>
+</div>
+<!-- Navbar End -->
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include "LinkFile.html" %}
+</head>
+<body>
+  {% include "Admin/frmAdminHeader.html"%}
+
+  <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h2 class="mb-3">All Employee List</h2>
+  </div>
+  
+  <div class="container-xxl py-2">
+      <div class="container">
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        </div>
+          <div class="row g-4">  
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                  <form action="" method="post">
+                      {% csrf_token %}
+                      <table class="table">
+                        <thead>
+                          <tr>                    
+                            <th>Sr.NO.</th>
+                            <th>Employee Name</th> 
+                            <th>Mobile No</th>
+                            <th>Designation</th> 
+                            <th>Course</th>                            
+                            <th>Is Active</th>  
+                            <th>Update</th>  
+
+                          </tr>
+                        </thead>
+                        <tbody>                          
+                          {% for e in EmpInfo %}
+                          <tr>                                                                    
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ e.name }}</td> 
+                              <td>{{ e.ContactNo }}</td>
+                              <td>{{ e.Designation }}</td>
+                              <td>{{ e.Course }}</td>
+                              <td>{{ e.isActive }}</td>
+                              <td><a href="{% url 'UpdateEmpInfo' e.ContactNo %}">Update Data</a></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>                      
+                  </form>
+              </div>
+          
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+
+  {% include 'Footer.html' %} 
+  {% include 'JS.html' %}
+
+    
+</body>
+</html>

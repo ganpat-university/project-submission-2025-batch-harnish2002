@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% include "LinkFile.html" %}
+</head>
+
+<body>
+    {% include "Admin/frmAdminHeader.html"%}
+
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h2 class="mb-3">Enter Details for New Course</h2>
+    </div>
+
+    <div class="container-xxl py-2">
+        <div class="container">           
+            <div class="row g-4">
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <form action="/do_Adminaddcourse/" method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="course" name="course" placeholder="Your Name">
+                                    <label for="course">Course Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control"  id="coursefee" name="coursefee" placeholder="Your Mobile Number">
+                                    <label for="coursefee">Course Fee</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isActive" name="isActive" {% if course.isActive %} checked {% endif %}>
+                                    <label class="form-check-label" for="isActive">Is Active</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Add</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="message" style="display:none; margin-top: 20px;">Course Registration successful. Please log in to start your course.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    {% include 'Footer.html' %} 
+    {% include 'JS.html' %}
+
+ 
+</body>
+
+</html>

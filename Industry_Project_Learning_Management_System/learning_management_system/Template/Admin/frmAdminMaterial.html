@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include "LinkFile.html" %}
+</head>
+<body>
+  {% include "Admin/frmAdminHeader.html" %}
+
+  <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h2 class="mb-3">Enter Details for Login</h2>
+  </div>
+  
+  <div class="container-xxl py-2">
+      <div class="container">
+          <div class="row g-4">
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                  <form action="/allmaterials/" method="post">
+                      {% csrf_token %}
+                      <table class="table">
+                        <thead>
+                          <tr>                    
+                            <th>Sr.No.</th> 
+                            <th>Topic</th>                  
+                            <th>Video</th>                                  
+                            <th>TextMaterial</th>                                  
+                            <th>OtherMaterial</th>                                  
+                            <th>Is Active</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for e in CourseData %}
+                              <tr>                                                                    
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>{{ e.Topic }} </td>
+                                  {% if e.isActive %}
+                                    {% if e.VideoMaterial == '' %}
+                                      <td><i class="fa fa-user ms-3"></i></td>
+                                    {% else %}
+                                      <td><a href="#" class="video-link" data-src="/Media/{{ e.VideoMaterial }}"><i class="fa fa-video ms-3"></i></a></td>
+                                    {% endif %}
+                                    {% if e.TextMaterial == '' %}
+                                      <td><i class="fa fa-file ms-3"></i></td>
+                                    {% else %}
+                                      <td><a href="/Media/{{ e.TextMaterial }}"><i class="fa fa-file ms-3"></i></a></td>
+                                    {% endif %}
+                                    {% if e.Program == '' %}
+                                      <td><i class="fa fa-download ms-3"></i></td>
+                                    {% else %}
+                                      <td><a href="/Media/{{ e.Program }}"><i class="fa fa-download ms-3"></i></a></td>
+                                    {% endif %}
+                                  {% else %}
+                                    <td></td>
+                                  {% endif %}
+                                  <td>{{ e.isActive }}</td>
+                              </tr>
+                             {% empty %}
+                             <p>No matching records found.</p>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+
+  {% include 'Footer.html' %} 
+  {% include 'JS.html' %}
+
+  <!-- Bootstrap Modal for Video -->
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="videoModalLabel">Video</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <video id="videoPlayer" controls style="width: 100%">
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script to handle modal opening -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const videoLinks = document.querySelectorAll('.video-link');
+
+      videoLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          const videoSrc = this.getAttribute('data-src');
+          const videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
+          const videoPlayer = document.getElementById('videoPlayer');
+          const videoSource = document.getElementById('videoSource');
+
+          // Set the video source
+          videoSource.src = videoSrc;
+          videoPlayer.load();
+
+          // Open the modal
+          videoModal.show();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

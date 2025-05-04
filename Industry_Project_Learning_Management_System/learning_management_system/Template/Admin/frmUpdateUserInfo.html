@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% include "LinkFile.html" %}
+</head>
+
+<body>
+    {% include "Admin/frmAdminHeader.html" %}
+
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h2 class="mb-3">Enter Details for Update Data</h2>
+    </div>
+
+    <div class="container-xxl py-2">
+        <div class="container">          
+            <div class="row g-4">
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <form id="updateForm" action="/do_UpdateUserInfo/" method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ UserInfo.name }}" placeholder="Your Name">
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Your Address" id="address" name="address">{{ UserInfo.address }}</textarea>
+                                    <label for="address">Address</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control"  id="mobileno" name="mobileno" value="{{ UserInfo.mobileno }}" placeholder="Your Mobile Number">
+                                    <label for="mobileno">Your Mobile Number</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ UserInfo.email }}" placeholder="Your Email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>                
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="Course" name="Course" >
+                                        <option selected>{{ UserInfo.Course }}</option>
+                                        <!-- {% for course in courses %}
+                                        {% if course.isActive %}    
+                                            <option value="{{ course.course }}" data-fee="{{ course.coursefee }}">{{ course.course }}</option>
+                                        {% endif %}    
+                                        {% endfor %} -->
+                                    </select>
+                                    <label for="Course">Your Course</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="coursefee" name="coursefee" value="{{ UserInfo.coursefee }}"  placeholder="Course Fee" readonly>
+                                    <label for="courseFee">Course Fee</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="Password" name="Password" value="{{ UserInfo.Password }}"
+                                    placeholder="Your Password">
+                                    <label for="Password">Your Password</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isActive" name="isActive" {% if UserInfo.isActive %} checked {% endif %}>
+                                    <label class="form-check-label" for="isActive">Is Active</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button> 
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="message" style="display:none; margin-top: 20px;">Course Registration successful. Please log in to start your course.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    {% include 'Footer.html' %} 
+    {% include 'JS.html' %}
+
+    <script>
+        function updateCourseFee() {
+            var selectedCourse = document.getElementById("course").value;
+            var courseOptions = document.getElementById("course").getElementsByTagName("option");
+            var courseFeeField = document.getElementById("courseFee");
+
+            for (var i = 0; i < courseOptions.length; i++) {
+                if (courseOptions[i].value === selectedCourse) {
+                    courseFeeField.value = courseOptions[i].getAttribute("data-fee");
+                    break;
+                }
+            }
+        }
+
+//function payNow() {
+    //var courseFee = document.getElementById("courseFee").value;
+    // Implement Razorpay payment logic here using courseFee
+    // For example:
+//     // var options = {
+//     //     "key": "YOUR_RAZORPAY_KEY",
+//     //     "amount": courseFee * 100, // Amount in paisa
+//     //     "currency": "INR",
+//     //     "name": "Your Company Name",
+//     //     "description": "Course Fee",
+//     //     "handler": function (response) {
+//     //         // On success, show message and redirect
+//     //         document.getElementById("message").style.display = "block";
+//     //         // Redirect to login page
+//     //         window.location.href = "/login/";
+//     //     },
+//     //     "prefill": {
+//     //         "name": document.getElementById("name").value,
+//     //         "email": document.getElementById("email").value
+//     //     },
+//     //     "theme": {
+//     //         "color": "#3399cc"
+//     //     }
+//     // };
+
+//     var rzp = new Razorpay(options);
+//     rzp.open();
+// }
+
+    </script>
+
+</body>
+
+</html>

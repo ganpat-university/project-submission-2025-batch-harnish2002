@@ -1,0 +1,230 @@
+/* Additional styles for quiz pages - add to quiz.css */
+
+/* Result circle styles */
+.result-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .result-circle.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 5px solid #28a745;
+    color: #28a745;
+  }
+  
+  .result-circle.failure {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 5px solid #dc3545;
+    color: #dc3545;
+  }
+  
+  /* Question styles */
+  .question-container {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+  
+  .question-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question-number {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 8px;
+  }
+  
+  .option-container {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  
+  .option-container:hover {
+    background-color: #e9ecef;
+  }
+  
+  /* Similarity badge */
+  .similarity-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
+  
+  /* Job and course cards */
+  .job-card, .course-card {
+    transition: transform 0.3s;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .job-card:hover, .course-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Timer styles */
+  #timer {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+  }
+  
+  /* Progress bar */
+  .progress-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .progress {
+    height: 8px;
+    border-radius: 0;
+  }
+  
+  .progress-bar {
+    background-color: #007bff;
+    transition: width 0.3s ease;
+  }
+  
+  /* Quiz content container */
+  .quiz-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Recommendations section styling */
+  .recommendations-container {
+    margin-top: 30px;
+  }
+  
+  /* Alert customization */
+  .alert {
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .alert i {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  /* Button customization */
+  .btn-quiz, .btn-roadmap {
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  
+  .btn-quiz:hover, .btn-roadmap:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Rating stars */
+  .rating .fas.fa-star {
+    color: #ffc107;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    
+    .main-content {
+      margin-left: 0;
+      padding: 15px;
+    }
+    
+    .result-circle {
+      width: 120px;
+      height: 120px;
+      font-size: 2rem;
+    }
+    
+    .card-header h3 {
+      font-size: 1.5rem;
+    }
+    
+    #timer {
+      font-size: 1.2rem;
+    }
+    
+    .btn-lg {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Styles for active menu items */
+  .nav-link.active {
+    background-color: #007bff !important;
+    color: white !important;
+  }
+  
+  /* Custom card for quiz results */
+  .card-header h2, .card-header h3, .card-header h4 {
+    margin-bottom: 0;
+  }
+  
+  /* Course materials button */
+  .btn-outline-light {
+    border: 2px solid black;
+    transition: all 0.3s;
+    color: black;
+  }
+  
+  .btn-outline-light:hover {
+    background-color: white;
+  }
+  
+  /* Animation for results page */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .recommendations-container {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* List group styling */
+  .list-group-item {
+    transition: background-color 0.2s;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Form check inputs */
+  .form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
+  }

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Roadmap - Career Guidance System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            z-index: 100;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .roadmap-container {
+            position: relative;
+            min-height: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .python-logo {
+            position: absolute;
+            top: 450px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .python-logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .category {
+            position: absolute;
+            width: 200px;
+            border-radius: 8px;
+            padding: 12px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            transition: transform 0.2s;
+            border: 1px solid #ccc;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .category h2 {
+            color: white;
+            text-align: center;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .category ul {
+            list-style-type: none;
+            padding: 0 8px;
+            margin: 0;
+        }
+
+        .category li {
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .category li:last-child {
+            border-bottom: none;
+        }
+
+        .dsa {
+            top: 120px;
+            left: 50px;
+        }
+
+        .dsa h2 {
+            background-color: #0066cc;
+        }
+
+        .package-managers {
+            top: 120px;
+            left: 50%;
+            margin-left: -100px; 
+            transform: none;
+        }
+        
+
+        .package-managers h2 {
+            background-color: #cc0066;
+        }
+
+        .basics {
+            top: 120px;
+            right: 50px;
+        }
+
+        .basics h2 {
+            background-color: #ff8533;
+        }
+
+        .automation {
+            top: 380px;
+            left: 50px;
+        }
+
+        .automation h2 {
+            background-color: #00994d;
+        }
+
+        .advanced {
+            top: 400px;
+            right: 50px;
+        }
+
+        .advanced h2 {
+            background-color: #660000;
+        }
+
+        .testing {
+            top: 620px;
+            left: 50px;
+        }
+
+        .testing h2 {
+            background-color: #9900cc;
+        }
+
+        .oop {
+            top: 620px;
+            right: 50px;
+        }
+
+        .oop h2 {
+            background-color: #cc0066;
+        }
+
+        .data-science {
+            top: 780px;
+            left: 25%;
+        }
+
+        .data-science h2 {
+            background-color: #003366;
+        }
+
+        .web-frameworks {
+            top: 780px;
+            right: 25%;
+        }
+
+        .web-frameworks h2 {
+            background-color: #ffcc00;
+        }
+
+        .line {
+            position: absolute;
+            background-color: #007bff;
+            height: 2px;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* Profile picture styling */
+        .profile-pic-container {
+            width: 25px;
+            height: 25px;
+            overflow: hidden;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e9ecef;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .roadmap-container {
+                position: static;
+                min-height: auto;
+            }
+
+            .category {
+                position: relative;
+                left: auto !important;
+                right: auto !important;
+                top: auto !important;
+                margin: 20px auto;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .python-logo {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 20px auto;
+            }
+
+            .line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-light shadow sidebar">
+            <div class="d-flex flex-column p-3 h-100">
+                <a href="{% url 'dashboard' %}"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-4 fw-bold">Car<span class="text-primary">eer</span></span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'dashboard' %}" class="nav-link text-dark" aria-current="page">
+                            <i class="fa-solid fa-house me-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profile' %}" class="nav-link text-dark">
+                            <div class="d-flex align-items-center">
+                                <div class="profile-pic-container me-2">
+                                    {% if user.profile_picture %}
+                                    <img src="{{ user.get_profile_picture_url }}" alt="Profile" class="profile-pic">
+                                    {% else %}
+                                    <i class="fas fa-user"></i>
+                                    {% endif %}
+                                </div>
+                                <span>Profile</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'progress' %}" class="nav-link text-dark">
+                            <i class="fas fa-chart-line me-2"></i> Progress
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'quiz_results' %}" class="nav-link text-dark">
+                            <i class="fas fa-chart-bar me-2"></i> Results
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'settings' %}" class="nav-link text-dark">
+                            <i class="fas fa-cog me-2"></i> Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="nav-link text-dark">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="roadmap-container" id="roadmap-container">
+                <header>
+                    <h1>WEB DEVELOPMENT ROADMAP</h1>
+                </header>
+
+                <!-- Web Logo at the center -->
+                <div class="python-logo"  id="python-logo">
+                    <img src="/course_images/app-development.png" alt="DevOps Logo" style="width: 120px; height: auto;">
+                </div>
+
+                <!-- HTML & CSS -->
+                <div class="category basics">
+                    <h2>HTML & CSS</h2>
+                    <ul>
+                        <li>HTML Basics & Semantics</li>
+                        <li>Forms & Validation</li>
+                        <li>Flexbox & Grid</li>
+                        <li>Responsive Design</li>
+                        <li>CSS Animations</li>
+                    </ul>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="category dsa">
+                    <h2>JavaScript</h2>
+                    <ul>
+                        <li>Syntax & DOM</li>
+                        <li>Events & Functions</li>
+                        <li>Async JS (Promises, Fetch)</li>
+                        <li>ES6+ Features</li>
+                    </ul>
+                </div>
+
+                <!-- Version Control -->
+                <div class="category package-managers">
+                    <h2>Version Control</h2>
+                    <ul>
+                        <li>Git Basics</li>
+                        <li>GitHub</li>
+                        <li>Branching & Merging</li>
+                    </ul>
+                </div>
+
+                <!-- Frontend Frameworks -->
+                <div class="category automation">
+                    <h2>Frontend Frameworks</h2>
+                    <ul>
+                        <li>React.js</li>
+                        <li>Vue.js</li>
+                        <li>Next.js</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </div>
+
+                <!-- Backend Development -->
+                <div class="category advanced">
+                    <h2>Backend</h2>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Express.js</li>
+                        <li>REST API</li>
+                        <li>Middleware</li>
+                    </ul>
+                </div>
+
+                <!-- Databases -->
+                <div class="category testing">
+                    <h2>Databases</h2>
+                    <ul>
+                        <li>MySQL / PostgreSQL</li>
+                        <li>MongoDB</li>
+                        <li>ORM (Mongoose / Sequelize)</li>
+                    </ul>
+                </div>
+
+                <!-- Deployment -->
+                <div class="category data-science">
+                    <h2>Deployment</h2>
+                    <ul>
+                        <li>Netlify / Vercel</li>
+                        <li>Render / Railway</li>
+                        <li>Docker Basics</li>
+                        <li>CI/CD Concepts</li>
+                    </ul>
+                </div>
+
+                <!-- Authentication -->
+                <div class="category oop">
+                    <h2>Authentication</h2>
+                    <ul>
+                        <li>JWT</li>
+                        <li>OAuth</li>
+                        <li>Session & Cookies</li>
+                    </ul>
+                </div>
+
+                <!-- APIs -->
+                <div class="category web-frameworks">
+                    <h2>APIs</h2>
+                    <ul>
+                        <li>REST API</li>
+                        <li>GraphQL</li>
+                        <li>API Integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function createLineToCenter() {
+            const container = document.getElementById('roadmap-container');
+            const pythonLogo = document.getElementById('python-logo');
+            const categories = document.querySelectorAll('.category');
+
+            // Get center of Python logo relative to the container
+            const containerBounds = container.getBoundingClientRect();
+            const logoBounds = pythonLogo.getBoundingClientRect();
+            const centerX = logoBounds.left - containerBounds.left + logoBounds.width / 2;
+            const centerY = logoBounds.top - containerBounds.top + logoBounds.height / 2;
+
+            categories.forEach(category => {
+                // Get category box bounds relative to the container
+                const bounds = category.getBoundingClientRect();
+                const categoryX = bounds.left - containerBounds.left + bounds.width / 2;
+                const categoryY = bounds.top - containerBounds.top + bounds.height / 2;
+
+                // Calculate line length and angle
+                const deltaX = centerX - categoryX;
+                const deltaY = centerY - categoryY;
+                const length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+
+                // Create line element
+                const line = document.createElement('div');
+                line.classList.add('line');
+                line.style.width = `${length}px`;
+                line.style.transform = `rotate(${angle}deg)`;
+                line.style.transformOrigin = 'top left';
+                line.style.top = `${categoryY}px`;
+                line.style.left = `${categoryX}px`;
+
+                container.appendChild(line);
+            });
+        }
+
+        // Create lines when page loads and on window resize
+        window.addEventListener('load', createLineToCenter);
+        window.addEventListener('resize', () => {
+            // Remove existing lines before recreating
+            const existingLines = document.querySelectorAll('.line');
+            existingLines.forEach(line => line.remove());
+            createLineToCenter();
+        });
+    </script>
+</body>
+
+</html>

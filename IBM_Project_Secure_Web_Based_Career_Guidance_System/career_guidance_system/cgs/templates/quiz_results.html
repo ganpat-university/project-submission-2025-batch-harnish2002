@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/quiz_results.css' %}">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-light shadow sidebar">
+            <div class="d-flex flex-column p-3 h-100">
+                <a href="{% url 'dashboard' %}"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span class="fs-4 fw-bold">Car<span class="text-primary">eer</span></span>
+            </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'dashboard' %}" class="nav-link text-dark " aria-current="page">
+                            <i class="fa-solid fa-house me-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profile' %}" class="nav-link text-dark">
+                            <div class="d-flex align-items-center">
+                                <div class="profile-pic-container me-2">
+                                    {% if user.profile_picture %}
+                                    <img src="{{ user.get_profile_picture_url }}" alt="Profile" class="profile-pic">
+                                {% else %}
+                                    <i class="fas fa-user"></i>
+                                {% endif %}
+                                </div>
+                                <span>Profile</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'progress' %}" class="nav-link text-dark">
+                            <i class="fas fa-chart-line me-2"></i> Progress
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'quiz_results' %}" class="nav-link active text-dark">
+                            <i class="fas fa-chart-bar me-2"></i> Results
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'settings' %}" class="nav-link text-dark">
+                            <i class="fas fa-cog me-2"></i> Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="nav-link text-dark">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Main Content -->
+        <div class="main-content p-4 w-100">
+            <div class="welcome mb-4 text-center">
+                <h3>Welcome, <span class="text-primary">{{ user_name }}</span> 👋</h3>
+            </div>
+    
+            <!-- Attempted Quizzes -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Attempted Quizzes</h5>
+                    <i class="fas fa-chevron-down collapse-toggle" data-bs-toggle="collapse" data-bs-target="#attemptedSection"></i>
+                </div>
+                <div id="attemptedSection" class="collapse show">
+                    <div class="card-body">
+                        {% if attempted_quizzes %}
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Quiz</th>
+                                        <th>Score</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for quiz in attempted_quizzes %}
+                                    <tr>
+                                        <td>{{ quiz.course_title }}</td>
+                                        <td>{{ quiz.quiz_title }}</td>
+                                        <td>
+                                            <div class="progress progress-bar-tooltip" data-score="{{ quiz.score }}">
+                                                <div class="progress-bar {% if quiz.is_passed %}bg-success{% else %}bg-danger{% endif %} position-relative" role="progressbar"
+                                                    style="width: {{ quiz.score }}%;" aria-valuenow="{{ quiz.score }}" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="progress-text">{{ quiz.score }}%</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {% if quiz.is_passed %}
+                                            <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Passed</span>
+                                            {% else %}
+                                            <span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i> Failed</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ quiz.date|date:"d M Y" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <p class="text-muted text-center">No quizzes attempted yet.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Unattempted Quizzes -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Unattempted Quizzes</h5>
+                </div>
+                <div class="card-body">
+                    {% if unattempted_quizzes %}
+                    <div class="row g-3">
+                        {% for quiz in unattempted_quizzes %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 shadow-sm border border-dark-subtle">
+                                <div class="card-body d-flex flex-column">
+                                    <h6 class="card-title text-primary">{{ quiz.quiz_title }}</h6>
+                                    <p class="card-text text-muted">{{ quiz.description|truncatewords:15 }}</p>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-warning">Pass: {{ quiz.pass_percentage }}%</span>
+                                        <a href="{% url 'quiz_start' quiz.course_id %}" class="btn btn-outline-primary btn-sm">Start Quiz</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-muted text-center">You've completed all quizzes! 🎉</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/quiz_results.js' %}"></script>
+</body>
+</html>

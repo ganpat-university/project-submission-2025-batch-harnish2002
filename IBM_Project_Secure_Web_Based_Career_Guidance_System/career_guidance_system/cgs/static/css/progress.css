@@ -1,0 +1,138 @@
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    z-index: 100;
+}
+
+
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 200px;
+    padding: 20px;
+    overflow-y: auto;
+    /* background-color: #b9c9d8; */
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+h2, h3 {
+    font-weight: bold;
+}
+
+
+/* Progress Card Styles */
+.progress-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.progress-card:hover {
+    transform: translateY(-5px);
+}
+
+.card{
+    background-color: #dfdfdf;
+}
+
+.card-header {
+    /* background-color: #ffffff; */
+    /* background-color: #aeb0b3; */
+    background-color: #dfdfdf;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.progress-circle {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.progress-circle svg {
+    width: 100%;
+    height: 100%;
+}
+
+.progress-circle-bg {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 10;
+}
+
+.progress-circle-fill {
+    fill: none;
+    stroke: #007bff;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 0.5s;
+}
+
+.progress-circle.complete .progress-circle-fill {
+    stroke: #28a745;
+}
+
+.progress-circle-text {
+    font-size: 18px;
+    font-weight: bold;
+    fill: #333;
+}
+
+.timestamp {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.card-footer {
+    /* background-color: #ffffff; */
+    background-color: #dfdfdf;
+    padding: 15px;
+    text-align: center;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.profile-pic-container {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+  }
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .progress-card {
+        margin-bottom: 20px;
+    }
+}

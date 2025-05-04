@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include "LinkFile.html" %}
+  </head>
+
+  <body>
+      {% include "Admin/frmAdminHeader.html" %}
+
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h2 class="mb-3">Queries & Responses</h2>
+      </div>
+
+  <div class="container-xxl py-2">
+      <div class="container">          
+          <div class="row g-4">
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                  <form action="" method="post">
+                      {% csrf_token %}
+                      <table class="table">
+                        <thead>
+                          <tr>                    
+                            <th>Sr.NO.</th>
+                            <th>Mobile No</th> 
+                            <th>Course</th>                                                    
+                            <th>Query</th>
+                            <th>Write Response</th>                                                    
+                            <th>Response</th>                           
+                            <th>Status</th>                           
+                          </tr>
+                        </thead>
+                        <tbody>                          
+                          {% for e in Queries %}
+                          <tr>                                                                    
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ e.mobileno }}</td>
+                              <td>{{ e.subject }} </td>
+                              <td>{{ e.query }} </td>
+                              <td><a href="{% url 'QueryResponse' e.Id %}">Write Response</a></td>
+                              <td>{{ e.queryans }}</td>
+                              <td>
+                                {% if e.isCompleted %}
+                                  <i class="fas fa-check text-success"></i>
+                                {% else %}
+                                  <i class="fas fa-times text-danger"></i>
+                                {% endif %}
+                              </td>  
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>                      
+                  </form>
+              </div>
+          
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+
+  {% include 'Footer.html' %} 
+  {% include 'JS.html' %}
+
+    
+</body>
+</html>

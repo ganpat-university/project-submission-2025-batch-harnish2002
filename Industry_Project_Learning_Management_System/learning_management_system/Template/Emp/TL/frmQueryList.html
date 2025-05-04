@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include "LinkFile.html" %}
+</head>
+<body>
+  {% include "Emp/TL/frmTLHearder.html"%}
+  
+  <!-- Contact Start -->
+  <div class="container-xxl py-5">
+      <div class="container">
+          <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+              <h6 class="section-title bg-white text-center text-primary px-3">Queries</h6>
+              <h1 class="mb-5">Query List Of Your Subject</h1>
+          </div>
+          <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+          
+            <!-- {% for e in MYCourse %}
+            {% if forloop.first %}
+              <a href="/AddStuCourse/{{ e.mobileno }}" class="btn btn-primary">Add New Course</a>
+            {% endif %}  
+            {% endfor %} -->
+        </div>
+          <div class="row g-4">
+             
+           
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                  <form action="" method="post">
+                      {% csrf_token %}
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Sr.No</th>                    
+                            <th>Mobile No</th>                  
+                            <th>Course</th>                                  
+                            <th>Query</th>
+                            <th>Response</th>                           
+                            <th>Status</th>                           
+                          </tr>
+                        </thead>
+                        <tbody>                          
+                          {% for e in Queries %}                          
+                          <tr>                                                                    
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ e.mobileno }}</td>
+                            <td>{{ e.subject }}</td>
+                            <td>{{ e.query }}</td>
+                            <td><a href="{% url 'QueryResponse' e.Id %}">Write Response</a></td>
+                            <td>
+                              {% if e.isCompleted %}
+                                <i class="fas fa-check text-success"></i>
+                              {% else %}
+                                <i class="fas fa-times text-danger"></i>
+                              {% endif %}
+                            </td>  
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>                      
+                  </form>
+              </div>
+          
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+
+  {% include 'Footer.html' %} 
+  {% include 'JS.html' %}
+
+    
+</body>
+</html>

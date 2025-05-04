@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% include "LinkFile.html" %}
+</head>
+
+<body>
+    {% include "Emp/TL/frmTLHearder.html"%}
+
+    <!-- Contact Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Query Response</h6>
+                <h1 class="mb-5">Enter Your Response</h1>
+            </div>
+            <div class="row g-4">
+
+
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <form action="/do_QueryResponse/" method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="query" value="{{default_query.query}}" name="query" placeholder="Query" readonly>
+                                    <label for="query">Query</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="textarea" class="form-control"  id="queryans" value="{{default_query.queryans}}" name="queryans" placeholder="Write Your Response">
+                                    <label for="queryans">Your Response</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isActive" name="isActive"  value="True" {% if default_query.isActive %} checked {% endif %} >
+                                    <label class="form-check-label" for="isActive">Is Active</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isCompleted" name="isCompleted" value="True" {% if default_query.isCompleted %} checked {% endif %}>
+                                    <label class="form-check-label" for="isCompleted">Is Completed</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="message" style="display:none; margin-top: 20px;">Course Registration successful. Please log in to start your course.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    {% include 'Footer.html' %} 
+    {% include 'JS.html' %}
+
+ 
+</body>
+
+</html>

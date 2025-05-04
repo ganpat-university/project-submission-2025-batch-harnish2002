@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    {% include "LinkFile.html" %}
+  
+</head>
+
+<body>
+   {% include "User/frmUserHeader.html"%}
+
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h2 class="mb-3">Enter Details for Course</h2>
+    </div>
+
+    <div class="container-xxl py-2">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <form action="/do_AddStuCourse/" method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                                                       
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" value="{{mobno}}"  id="mobileno" name="mobileno" placeholder="Your Mobile Number" readonly> 
+                                    <label for="mobileno">Your Mobile Number</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="course" name="course" onchange="updateCourseFee()">
+                                        <option selected disabled>Select Your Course</option>
+                                        {% for course in courses %}
+                                        {% if course.isActive %}    
+                                            <option value="{{ course.course }}" data-fee="{{ course.coursefee }}">{{ course.course }}</option>
+                                        {% endif %}    
+                                        {% endfor %}
+                                    </select>
+                                    <label for="course">Your Course</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="courseFee" name="courseFee" placeholder="Course Fee" readonly>
+                                    <label for="courseFee">Course Fee</label>
+                                </div>
+                            </div>
+                               
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    {% include 'Footer.html' %} 
+    {% include 'JS.html' %}
+
+<script>
+
+function updateCourseFee() {
+            var selectedCourse = document.getElementById("course").value;
+            var courseOptions = document.getElementById("course").getElementsByTagName("option");
+            var courseFeeField = document.getElementById("courseFee");
+
+            for (var i = 0; i < courseOptions.length; i++) {
+                if (courseOptions[i].value === selectedCourse) {
+                    courseFeeField.value = courseOptions[i].getAttribute("data-fee");
+                    break;
+                }
+            }
+        }
+
+</script>
+
+</body>
+
+</html>

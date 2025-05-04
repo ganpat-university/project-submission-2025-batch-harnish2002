@@ -1,0 +1,190 @@
+/* Custom styles to complement Bootstrap and match dashboard theme */
+body {
+    background-color: #f4f6f9;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    z-index: 100;
+}
+
+.main-content {
+    margin-left: 250px;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f4f6f9;
+}
+
+.content-wrapper {
+    display: flex;
+}
+
+.content-sidebar {
+    width: 250px;
+    padding: 20px;
+    border-radius: 8px;
+    margin-right: 20px;
+    height: 100%; /* Ensure full height */
+}
+
+.content-index {
+    height: calc(100vh - 200px); /* Adjust height to match course materials */
+    overflow-y: auto; /* Enable vertical scrollbar */
+    padding-right: 10px; /* Add some padding for the scrollbar */
+}
+
+.content-main {
+    flex-grow: 1;
+}
+
+.material-index-item {
+    list-style: none;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.material-index-item a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s;
+    flex-grow: 1;
+}
+
+.material-index-item.active a,
+.material-index-item a:hover {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.material-index-item.completed a {
+    color: #28a745; /* Green color for completed items */
+    font-weight: 500; /* Slightly bolder for completed items */
+}
+
+.material-index-item.completed::after {
+    content: '\f00c'; /* FontAwesome checkmark icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #28a745; /* Green color */
+    margin-left: 10px; /* Space between text and checkmark */
+    font-size: 14px; /* Adjust size as needed */
+}
+
+.material-card {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.material-header {
+    margin-bottom: 15px; /* Add space below the header */
+}
+
+.material-body {
+    padding: 0 10px; /* Add horizontal padding to content */
+}
+
+.material-index-item {
+    list-style: none;
+    margin-bottom: 10px;
+    padding: 8px 12px; /* Add padding to list items */
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.material-index-item:hover {
+    background-color: #e9ecef; /* Subtle hover effect */
+}
+
+.content-text, 
+.video-container {
+    background-color: #f8f9fa; /* Light background for content area */
+    border-radius: 6px;
+    padding: 15px; /* Add padding inside content areas */
+    margin-bottom: 15px; /* Space below content */
+}
+
+.material-type-badge {
+    position: absolute;
+    top: 15px; /* Adjust top positioning */
+    right: 15px; /* Adjust right positioning */
+}
+
+
+.course-progress {
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.course-progress-bar {
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.5s ease;
+}
+
+.profile-pic-container {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Custom scrollbar for content index */
+.content-index::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content-index::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.content-index::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.content-index::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .content-sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}

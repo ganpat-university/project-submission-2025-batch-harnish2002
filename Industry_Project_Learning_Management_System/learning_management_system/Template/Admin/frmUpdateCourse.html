@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% include "LinkFile.html" %}
+</head>
+
+<body>
+    
+    {% include "Admin/frmAdminHeader.html"%}
+
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h2 class="mb-3">Enter Details For Update</h2>
+    </div>
+
+    <div class="container-xxl py-2">
+        <div class="container">           
+            <div class="row g-4">
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <form action="/do_updatecourse/" method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="course" name="course" value="{{ course.course }}" readonly>
+                                    <label for="course">Course</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="courseFee" name="courseFee" value="{{ course.coursefee }}" placeholder="Course Fee">
+                                    <label for="courseFee">Course Fee</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="isActive" name="isActive" {% if course.isActive %} checked {% endif %}>
+                                    <label class="form-check-label" for="isActive">Is Active</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    {% include 'Footer.html' %} 
+    {% include 'JS.html' %}
+
+    <script>
+       $(document).ready(function () {
+    $('#updateCourseForm').submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        // Serialize form data including checkbox state
+        var formData = new FormData(form[0]);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            processData: false,  // Prevent jQuery from converting the data to a query string
+            contentType: false,  // Prevent jQuery from setting the content type
+            success: function (data) {
+                // Handle success response
+                console.log('Course updated successfully');
+            },
+            error: function (xhr, status, error) {
+                // Handle error response
+                console.error('Error updating course:', error);
+            }
+        });
+    });
+});
+    </script>
+
+</body>
+
+</html>

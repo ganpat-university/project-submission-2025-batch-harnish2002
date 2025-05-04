@@ -1,0 +1,193 @@
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    z-index: 100;
+  }
+  
+
+
+
+/* MAIN CONTENT */
+.main-content {
+    margin-left: 220px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* PROFILE PICTURE */
+
+.profile-pic-container {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+  }
+
+  .profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+.profile-picture-container {
+    text-align: center;
+}
+
+.profile-picture {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 4px solid #007bff;
+    position: relative;
+    background-color: #e9ecef;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.default-profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    color: #6c757d;
+}
+
+.upload-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.upload-overlay i {
+    color: #fff;
+}
+
+.upload-overlay input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* DELETE PHOTO */
+.delete-photo {
+    background: none;
+    border: none;
+    color: #dc3545;
+    margin-top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-photo:hover {
+    color: #bd2130;
+}
+
+/* PROFILE CARD */
+.profile-card {
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.profile-card .card-body {
+    padding: 25px;
+}
+
+.profile-card h5 {
+    font-weight: 600;
+    color: #007bff;
+}
+
+/* FORM ELEMENTS */
+.form-label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+input.form-control,
+textarea.form-control {
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.small-textarea {
+    height: 80px;
+    resize: none;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+/* Style for input fields to accommodate the edit button */
+#profileForm .form-control {
+padding-right: 40px; /* Make room for the edit icon */
+}
+
+/* Style for textarea fields */
+#profileForm textarea.form-control {
+padding-right: 40px;
+}
+
+/* Style for edit buttons */
+#profileForm .btn-link {
+color: #6c757d;
+text-decoration: none;
+}
+
+#profileForm .btn-link:hover {
+color: #007bff;
+}
+
+/* Focus style for inputs being edited */
+#profileForm .form-control:not([readonly]):focus {
+border-color: #80bdff;
+box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Animation for notification */
+@keyframes slideIn {
+from { transform: translateX(100%); opacity: 0; }
+to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+from { transform: translateX(0); opacity: 1; }
+to { transform: translateX(100%); opacity: 0; }
+}
+

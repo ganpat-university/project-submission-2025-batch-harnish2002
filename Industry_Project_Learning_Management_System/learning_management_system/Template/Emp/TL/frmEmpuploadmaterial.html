@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% include "LinkFile.html" %}
+</head>
+
+<body>
+    {% include "Emp/TL/frmTLHearder.html"%}
+
+    <!-- Contact Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Upload Materials</h6>
+                <h1 class="mb-5">Upload New Materials</h1>
+            </div>
+            <div class="row g-4">
+
+
+                <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    <form  action="/do_uploadmaterial/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="course" name="course" value="{{ Course.course }}" readonly>
+                                    <label for="Course">Your Course</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="topic" name="topic">
+                                    <label for="topic">Topic</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" id="file1" name="file1">
+                                    <label for="file1">File 1</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" id="file2" name="file2">
+                                    <label for="file2">File 2</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" id="file3" name="file3">
+                                    <label for="file3">File 3</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="message" style="display:none; margin-top: 20px;">Course Registration successful. Please log in to start your course.</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    {% include 'Footer.html' %} 
+    {% include 'JS.html' %}
+</body>
+
+</html>
