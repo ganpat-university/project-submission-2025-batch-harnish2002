@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Progress - Career Guidance System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/progress.css' %}">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar Navigation (Left) -->
+        <div class="shadow sidebar">
+            <div class="d-flex flex-column p-3 h-100">
+                <a href="{% url 'dashboard' %}"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-4 fw-bold">Car<span class="text-primary">eer</span></span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'dashboard' %}" class="nav-link text-dark">
+                            <i class="fas fa-home me-2"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profile' %}" class="nav-link text-dark">
+                            <div class="d-flex align-items-center">
+                                <div class="profile-pic-container me-2">
+                                    {% if user.profile_picture %}
+                                    <img src="{{ user.get_profile_picture_url }}" alt="Profile" class="profile-pic">
+                                {% else %}
+                                    <i class="fas fa-user"></i>
+                                {% endif %}
+                                </div>
+                                <span>Profile</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'progress' %}" class="nav-link active text-dark">
+                            <i class="fas fa-chart-line me-2"></i> Progress
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'quiz_results' %}" class="nav-link text-dark">
+                            <i class="fas fa-chart-bar me-2"></i> Results
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'settings' %}" class="nav-link text-dark">
+                            <i class="fas fa-cog me-2"></i> Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="nav-link text-dark">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content (Right) -->
+        <div class="main-content">
+            <div class="container">
+                <h2 class="mb-0"> Your Learning <span class="text-primary">Progress</span> </h2>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i> Track your progress across all courses.
+                    </div>
+
+                    <!-- Courses in Progress Section -->
+                    <h3 class="mb-4 text-dark"><i class="fas fa-spinner me-2"></i>Courses In Progress</h3>
+                    <div class="row">
+                        {% if in_progress_courses %}
+                        {% for course in in_progress_courses %}
+                        <div class="col-lg-4 col-md-6 mb-4 ">
+                            <div class="card h-100 progress-card border-dark shadow">
+                                <div class="card-header bg-primary border-dark">
+                                    <h2 class="mb-0 text-light">{{ course.title }}</h2>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="progress-circle">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                                            <circle class="progress-circle-fill" cx="50" cy="50" r="40"
+                                                stroke-dasharray="{{ course.progress_dasharray }} 251.2"
+                                                stroke-dashoffset="0"></circle>
+                                            <text class="progress-circle-text" x="50" y="55" text-anchor="middle">
+                                                {{ course.completion_percentage }}%
+                                            </text>
+                                        </svg>
+                                    </div>
+                                    <p class="timestamp">Last accessed: {{ course.last_accessed|date:"M d, Y" }}</p>
+                                </div>
+                                <div class="card-footer border-dark">
+                                    <a href="{% url 'course_materials' course.id %}" class="btn btn-primary">
+                                        <i class="fas fa-book-reader me-1"></i> Continue Learning
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col-12 text-center">
+                            <h4>No courses in progress</h4>
+                            <p class="text-muted">Start a course from your dashboard to track progress here.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Completed Courses Section -->
+                    <h3 class="mb-4 mt-5 text-dark"><i class="fas fa-check-circle me-2"></i>Completed Courses</h3>
+                    <!-- <h3 class="mb-4 mt-5 text-dark"><img src="/cgs/static/img/successful.png" style="width: 40px; height: 40px; margin-right:10px;">Completed Courses</h3> -->
+                    <!-- <div class="d-flex align-items-center mb-4 mt-5 text-dark">
+                        <img src="/cgs/static/img/successful.png" style="width: 40px; height: 40px; margin-right: 10px;">
+                        <h3 class="mb-0">Completed Courses</h3>
+                    </div> -->
+                    <div class="row">
+                        {% if completed_courses %}
+                        {% for course in completed_courses %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100 progress-card completed-card border-dark shadow">
+                                <div class="card-header border-dark bg-success">
+                                    <h2 class="mb-0 text-light">{{ course.title }}</h2>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div class="progress-circle complete">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                                            <circle class="progress-circle-fill" cx="50" cy="50" r="40"
+                                                stroke-dasharray="251.2 251.2" stroke-dashoffset="0"></circle>
+                                            <text class="progress-circle-text" x="50" y="55" text-anchor="middle">
+                                                100%
+                                            </text>
+                                        </svg>
+                                    </div>
+                                    <p class="timestamp">Completed on: {{ course.completion_date|date:"M d, Y" }}
+                                    </p>
+                                </div>
+                                <div class="card-footer border-dark">
+                                    <a href="{% url 'course_materials' course.id %}" class="btn btn-success">
+                                        <i class="fas fa-redo me-1"></i> Review Materials
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col-12 text-center">
+                            <h4>No completed courses yet</h4>
+                            <p class="text-muted">Complete all materials in a course to see it here.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
